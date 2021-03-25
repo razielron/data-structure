@@ -14,11 +14,14 @@ namespace ex1
 		int _index = 0;
 
 		bool isValidNum(DynamicArr<char>& num);
-		void getArrSize();
+		void arrSizeInput();
 		void getIndex();
 		void getNumbers();
 
 	public:
+		int getSize() { return _arrSize; }
+		DynamicArr<double>& getArr() { return _arr; }
+		void getArrCopy(double *&arr);
 		void getUserInput();
 		void printArr();
 	};
