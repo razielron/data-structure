@@ -2,13 +2,14 @@
 
 namespace ex1
 {
+
 	bool Input::isValidNum(DynamicArr<char>& num) {
 		int decimalLevel = num.size() - (num.find('.') + 2);
 
 		return ((num.size() - 1 > 0) && decimalLevel >= 1 && decimalLevel <= 4);
 	}
 
-	void Input::getArrSize() {
+	void Input::arrSizeInput() {
 		cout << "Enter Array Size: " << endl;
 		cin >> _arrSize;
 		while (_arrSize < 1) {
@@ -54,8 +55,12 @@ namespace ex1
 		}
 	}
 
+	void Input::getArrCopy(double *&numArr) {
+		_arr.copy(numArr);
+	}
+
 	void Input::getUserInput() {
-		getArrSize();
+		arrSizeInput();
 		getIndex();
 		getNumbers();
 	}
@@ -63,5 +68,6 @@ namespace ex1
 	void Input::printArr() {
 		for (auto itr = _arr.begin(); itr != _arr.end(); itr++)
 			cout << fixed << setprecision(4) << *itr << ", ";
+		cout << endl;
 	}
 }
