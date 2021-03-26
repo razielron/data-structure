@@ -5,5 +5,5 @@ void main() {
 	Input input;
 	input.getUserInput();
 	input.printArr();
-	Sort::sortMenu(input.getArr());
+	Sort::sortMenu(input.getArr(), input.geti());
 }

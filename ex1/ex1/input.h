@@ -20,6 +20,7 @@ namespace ex1
 
 	public:
 		int getSize() { return _arrSize; }
+		int geti() { return _index; }
 		DynamicArr<double>& getArr() { return _arr; }
 		void getArrCopy(double *&arr);
 		void getUserInput();
