@@ -2,7 +2,7 @@
 
 namespace ex1
 {
-	void Sort::insertionSort(double *&num, int size) {
+	double Sort::insertionSort(double *&num, int size, int index) {
         int i, j;
         double temp;
         for (i = 1; i < size ; i++)
@@ -17,6 +17,7 @@ namespace ex1
             }
             (num)[j + 1] = temp;
         }
+        return num[index];
 	}
     
     double Sort::selectionSort(double*& Arr, int left, int right, int i) {
@@ -79,8 +80,8 @@ namespace ex1
         int size = arr.size();
         double* copiedArr = new double[size];
         arr.copy(copiedArr);
-        insertionSort(copiedArr, size);
         cout << endl << "Insersion sort:" << endl;
+        cout << "The i number is: " << insertionSort(copiedArr, size, i) << endl;
         printArr(copiedArr, size);
         delete[] copiedArr;
 
