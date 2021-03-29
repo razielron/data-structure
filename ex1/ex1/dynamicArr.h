@@ -68,8 +68,8 @@ namespace ex1
 		void copy(T* element);
 		// returns element in a given position
 		T at(int pos);
-		//returns an element by given parameter
-		int find(char value);
+		//returns an  by given parameter
+		int find(T value);
 		//returns an element by given parameter
 		T find(int id);
 		//returns sub-string by range
@@ -411,7 +411,7 @@ namespace ex1
 	}
 
 	template<class T>
-	int DynamicArr<T>::find(char value) {
+	int DynamicArr<T>::find(T value) {
 		for (int i = 0; i < _logSize; i++) {
 			if (_array[i] == value)
 				return i;
@@ -419,6 +419,9 @@ namespace ex1
 
 		return size();
 	}
+
+	
+
 
 	template<class T>
 	T DynamicArr<T>::find(int id) {
