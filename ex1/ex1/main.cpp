@@ -1,9 +1,9 @@
 #include "sort.h"
+#include "input.h"
 using namespace ex1;
 
-void main() {
+int main() {
 	Input input;
 	input.getUserInput();
-	input.printArr();
 	Sort::sortMenu(input.getArr(), input.geti());
 }
