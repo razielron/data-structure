@@ -20,30 +20,18 @@ namespace ex1
         return num[index - 1];
 	}
 
+    double Sort::selectionSort(double*& Arr, int left, int right, int i) {
+        int pivot;
+        int leftPart;
 
-    void Sort::swap(double* num1, double* num2) {
-        double temp = *num1;
-        *num1 = *num2;
-        *num2 = temp;
-    }
-
-    double Sort::medianFinder(double*& arr, int n, int size)
-        {
-            if (n == size/2)
-                return arr[n];
-
-            for (int i = 0; i < n - 1; i++)
-                if (arr[i] > arr[i + 1])
-                    swap(&arr[i], &arr[i + 1]);
-
-            return medianFinder(arr,  n - 1, size);
-    }
-
-    void Sort::bubbleSort(double** num, int size) {
-        for (int i = 0; i < size - 1; i++)
-            for (int j = 0; j < size - i - 1; j++)
-                if ((*num)[j] > (*num)[j + 1])
-                    swap((*num) + j, (*num) + j + 1);
+        pivot = partition(Arr, left, right);
+        leftPart = pivot - left + 1;
+        if (i == leftPart)
+            return Arr[pivot];
+        if (i < leftPart)
+            return selectionSort(Arr, left, pivot - 1, i);
+        else
+            return selectionSort(Arr, pivot + 1, right, i - leftPart);
     }
 
     double Sort::quintileSort(double** num, int size, int index) {
@@ -94,19 +82,12 @@ namespace ex1
         }
         return (*num)[index - 1];
     }
-    
-    double Sort::selectionSort(double*& Arr, int left, int right, int i) {
-        int pivot;
-        int leftPart;
 
-        pivot = partition(Arr, left, right);
-        leftPart = pivot - left + 1;
-        if (i == leftPart)
-            return Arr[pivot];
-        if (i < leftPart)
-            return selectionSort(Arr, left, pivot - 1, i);
-        else
-            return selectionSort(Arr, pivot + 1, right, i - leftPart);
+    void Sort::bubbleSort(double** num, int size) {
+        for (int i = 0; i < size - 1; i++)
+            for (int j = 0; j < size - i - 1; j++)
+                if ((*num)[j] > (*num)[j + 1])
+                    swap((*num) + j, (*num) + j + 1);
     }
 
     int Sort::partition(double*& Arr, int left, int right) {
@@ -134,6 +115,24 @@ namespace ex1
         return partition(Arr, left, right);
     }
 
+    double Sort::medianFinder(double*& arr, int n, int size)
+    {
+        if (n == size / 2)
+            return arr[n];
+
+        for (int i = 0; i < n - 1; i++)
+            if (arr[i] > arr[i + 1])
+                swap(&arr[i], &arr[i + 1]);
+
+        return medianFinder(arr, n - 1, size);
+    }
+
+    void Sort::swap(double* num1, double* num2) {
+        double temp = *num1;
+        *num1 = *num2;
+        *num2 = temp;
+    }
+
     void Sort::swap(double*& Arr, int& left, int& right) {
         double temp = Arr[left];
         Arr[left] = Arr[right];
@@ -153,26 +152,65 @@ namespace ex1
 
     void Sort::sortMenu(DynamicArr<double> &arr, int i) {
         int size = arr.size();
+        double result;
+
+        //INSERSION SORT
         double* copiedArr = new double[size];
         arr.copy(copiedArr);
-        cout << endl << "Insersion sort:" << endl;
-        cout << "The i number is: " << insertionSort(copiedArr, size, i) << endl;
-        printArr(copiedArr, size);
+
+        auto start = chrono::high_resolution_clock::now();
+        ios_base::sync_with_stdio(false);
+
+        result = insertionSort(copiedArr, size, i);
+        cout << "Insertion sort i'th element: " << fixed << setprecision(4) << result  << endl;
+
+        auto end = chrono::high_resolution_clock::now();
+        double time_taken = chrono::duration_cast<chrono::nanoseconds>(end - start).count();
+        time_taken *= 1e-9;
+        ofstream myfile("Measure.txt", ios::app);
+        myfile << "Time taken by function insertionSort is : " << fixed << time_taken << setprecision(9);
+        myfile << " sec" << endl;
+
+        //printArr(copiedArr, size);
         delete[] copiedArr;
 
+        //SELECTION SORT
         copiedArr = new double[size];
         arr.copy(copiedArr);
-        cout << endl << "Selection sort:" << endl;
-        cout << "The i number is: " << selectionSort(copiedArr, 0, size - 1, i) << endl;
-        printArr(copiedArr, size);
+
+        start = chrono::high_resolution_clock::now();
+        ios_base::sync_with_stdio(false);
+
+        result = selectionSort(copiedArr, 0, size - 1, i);
+        cout << "Selection i'th element: " << fixed << setprecision(4) << result << endl;
+
+        end = chrono::high_resolution_clock::now();
+        time_taken = chrono::duration_cast<chrono::nanoseconds>(end - start).count();
+        time_taken *= 1e-9;
+        myfile << "Time taken by function selectionSort is : " << fixed << time_taken << setprecision(9);
+        myfile << " sec" << endl;
+
+        //printArr(copiedArr, size);
         delete[] copiedArr;
 
+        //FIVES SORT
         copiedArr = new double[size];
         arr.copy(copiedArr);
-        cout << endl << "quintile sort:" << endl;
-        cout << "The i number is: " << quintileSort(&copiedArr,size, i) << endl;
-        printArr(copiedArr, size);
-        delete[] copiedArr;
 
+        start = chrono::high_resolution_clock::now();
+        ios_base::sync_with_stdio(false);
+
+        result = quintileSort(&copiedArr, size, i);
+        cout << "Quintuplet algorithm i'th element: " << fixed << setprecision(4) << result << endl;
+
+        end = chrono::high_resolution_clock::now();
+        time_taken = chrono::duration_cast<chrono::nanoseconds>(end - start).count();
+        time_taken *= 1e-9;
+        myfile << "Time taken by function quintileSort is : " << fixed << time_taken << setprecision(9);
+        myfile << " sec" << endl << endl;
+        myfile.close();
+
+        //printArr(copiedArr, size);
+        delete[] copiedArr;
     }
 }

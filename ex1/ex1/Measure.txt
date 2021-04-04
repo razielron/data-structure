@@ -1,0 +1,56 @@
+Time taken by function insertionSort is : 0.000287 sec
+Time taken by function selectionSort is : 0.001183200 sec
+Time taken by function quintileSort is : 0.000528100 sec
+
+Time taken by function insertionSort is : 0.000374 sec
+Time taken by function selectionSort is : 0.000786800 sec
+Time taken by function quintileSort is : 0.000592300 sec
+
+Time taken by function insertionSort is : 0.000318 sec
+Time taken by function selectionSort is : 0.001024000 sec
+Time taken by function quintileSort is : 0.000645000 sec
+
+Time taken by function insertionSort is : 0.000460 sec
+Time taken by function selectionSort is : 0.000700900 sec
+Time taken by function quintileSort is : 0.000581700 sec
+
+Time taken by function insertionSort is : 0.000865 sec
+Time taken by function selectionSort is : 0.000281400 sec
+Time taken by function quintileSort is : 0.001219500 sec
+
+Time taken by function insertionSort is : 0.000602 sec
+Time taken by function selectionSort is : 0.000278700 sec
+Time taken by function quintileSort is : 0.000706000 sec
+
+Time taken by function insertionSort is : 0.000563 sec
+Time taken by function selectionSort is : 0.000349900 sec
+Time taken by function quintileSort is : 0.000476200 sec
+
+Time taken by function insertionSort is : 0.000404 sec
+Time taken by function selectionSort is : 0.000225100 sec
+Time taken by function quintileSort is : 0.000234400 sec
+
+Time taken by function insertionSort is : 0.000557 sec
+Time taken by function selectionSort is : 0.000347100 sec
+Time taken by function quintileSort is : 0.000200300 sec
+
+Time taken by function insertionSort is : 0.000565 sec
+Time taken by function selectionSort is : 0.000267400 sec
+Time taken by function quintileSort is : 0.000294800 sec
+
+Time taken by function insertionSort is : 0.001007 sec
+Time taken by function selectionSort is : 0.000719600 sec
+Time taken by function quintileSort is : 0.000241000 sec
+
+Time taken by function insertionSort is : 0.000720 sec
+Time taken by function selectionSort is : 0.000448200 sec
+Time taken by function quintileSort is : 0.000227600 sec
+
+Time taken by function insertionSort is : 0.000688 sec
+Time taken by function selectionSort is : 0.000360900 sec
+Time taken by function quintileSort is : 0.000316100 sec
+
+Time taken by function insertionSort is : 0.000663 sec
+Time taken by function selectionSort is : 0.000229600 sec
+Time taken by function quintileSort is : 0.000227700 sec
+

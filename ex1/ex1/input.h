@@ -2,7 +2,6 @@
 #include "dynamicArr.h"
 #include <iostream>
 #include <iomanip>
-#include <string>
 using namespace std;
 
 namespace ex1
@@ -24,6 +23,5 @@ namespace ex1
 		DynamicArr<double>& getArr() { return _arr; }
 		void getArrCopy(double *&arr);
 		void getUserInput();
-		void printArr();
 	};
 }

@@ -10,32 +10,29 @@ namespace ex1
 	}
 
 	void Input::arrSizeInput() {
-		cout << "Enter Array Size: " << endl;
 		cin >> _arrSize;
-		while (_arrSize < 1) {
-			cout << "Enter VALID Array Size > 0: " << endl;
-			cin >> _arrSize;
+		if (_arrSize < 1) {
+			cout << "Wrong Input" << endl;
+			exit(-1);
 		}
 
 		_arr.resize(_arrSize);
 	}
 
 	void Input::getIndex() {
-		cout << "Enter desired index: " << endl;
 		cin >> _index;
-		while (_index <= 0) {
-			cout << "Enter VALID index > 0: " << endl;
-			cin >> _index;
+		if (_index <= 0) {
+			cout << "Wrong Input" << endl;
+			exit(-1);
 		}
 	}
 
 	void Input::getNumbers() {
 		double number;
 		DynamicArr<char> strNumber;
-		char c = NULL;
+		char c;
 
 		cin.ignore();
-		cout << "Enter numbers: " << endl;
 		for (int i = 0; i < _arrSize; i++) {
 			cin.get(c);
 			while (c != '\n' && c != ' ') {
@@ -63,11 +60,5 @@ namespace ex1
 		arrSizeInput();
 		getIndex();
 		getNumbers();
-	}
-
-	void Input::printArr() {
-		for (auto itr = _arr.begin(); itr != _arr.end(); itr++)
-			cout << fixed << setprecision(4) << *itr << ", ";
-		cout << endl;
 	}
 }
