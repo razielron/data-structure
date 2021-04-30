@@ -20,7 +20,7 @@ namespace ex2
 	public:
 		int getSize() { return _arrSize; }
 		int geti() { return _index; }
-		DynamicArr<double>& getArr() { return _arr; }
+		double* getArr() { return _arr.getArr(); }
 		void getArrCopy(double*& arr);
 		void getUserInput();
 	};

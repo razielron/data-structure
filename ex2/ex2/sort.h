@@ -17,5 +17,6 @@ namespace ex2
 		static void printArr(double*& num, int size);
 		static void quickSort(double*& arr, int left, int right);
 		static void kWayMergeSort(double*& arr, int size, int k);
-	}
+		static void merge(double*& arr, int size, int k);
+	};
 }

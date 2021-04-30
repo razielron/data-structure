@@ -59,17 +59,56 @@ namespace ex2
         }
     }
 
+    void Sort::merge(double*& arr, int size, int k) {
+        double min;
+        int minKArr, kMaxIndex, t=0;
+        double* mergedArr = new double[size];
+        int indexesSize = (size % k) ? (k + 1) : k;
+        int* indexes = new int[indexesSize];
+        for (int i = 0;i < indexesSize;i++)
+            indexes[i] = i * k;
+        for (int i = 0; i < size; i++) {
+            kMaxIndex = (size / k);
+            while (indexes[t] >= kMaxIndex && t!=indexesSize) {
+                kMaxIndex = (t == indexesSize - 1) ? size - 1 : ((size / k) * t);
+                t++;
+            }
+            minKArr = t;
+            min = arr[indexes[t]];
+            for (int j = 0;j < indexesSize;j++) {
+                kMaxIndex = (j == indexesSize - 1) ? size - 1 : ((size / k) * j);
+                if (min > arr[indexes[j]] && indexes[j] < kMaxIndex)
+                {
+                    min = arr[indexes[j]];
+                    minKArr = j;
+                }
+            }
+            mergedArr[i] = min;
+            indexes[minKArr]++;
+        }
+
+        for (int i = 0;i < size;i++)
+            arr[i] = mergedArr[i];
+    }
+
 
 	void Sort::kWayMergeSort(double*& arr, int size, int k) {
         if (size < k){
             quickSort(arr, 0, size);
             return;
         }
-
-        //TBD
+        double* temp;
+        for (int i = 0; i < k;i++){
+            temp = arr + i * (size / k);
+            kWayMergeSort(temp, size / k, k);
+        }
+        if (size % k) {
+            temp = arr + size - size % k;
+            kWayMergeSort(temp, size%k, k);
+        }
             
-
-
+        
+        merge(arr, size, k);
 	}
 
 }
