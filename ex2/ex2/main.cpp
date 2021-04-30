@@ -7,4 +7,5 @@ int main() {
 	input.getUserInput();
 	double* arr = input.getArr();
 	Sort::kWayMergeSort(arr, input.getSize(), input.geti());
+	Sort::printArr(arr, input.getSize());
 }

@@ -61,23 +61,25 @@ namespace ex2
 
     void Sort::merge(double*& arr, int size, int k) {
         double min;
-        int minKArr, kMaxIndex, t=0;
+        int minKArr, kMaxIndex, t;
         double* mergedArr = new double[size];
         int indexesSize = (size % k) ? (k + 1) : k;
         int* indexes = new int[indexesSize];
         for (int i = 0;i < indexesSize;i++)
-            indexes[i] = i * k;
+            indexes[i] = i * (size/k);
         for (int i = 0; i < size; i++) {
-            kMaxIndex = (size / k);
-            while (indexes[t] >= kMaxIndex && t!=indexesSize) {
-                kMaxIndex = (t == indexesSize - 1) ? size - 1 : ((size / k) * t);
+            kMaxIndex = (size / k)-1;
+            t = 0;
+            while (indexes[t] > kMaxIndex && t!=indexesSize) {
                 t++;
+                kMaxIndex = (t == indexesSize - 1) ? size - 1 : ((size / k) * (t+1)-1);
             }
+            t = (t < indexesSize) ? t : t - 1;
             minKArr = t;
             min = arr[indexes[t]];
             for (int j = 0;j < indexesSize;j++) {
-                kMaxIndex = (j == indexesSize - 1) ? size - 1 : ((size / k) * j);
-                if (min > arr[indexes[j]] && indexes[j] < kMaxIndex)
+                kMaxIndex = (j == indexesSize - 1) ? size - 1 : ((size / k) * (j+1)-1);
+                if (min > arr[indexes[j]] && indexes[j] <= kMaxIndex)
                 {
                     min = arr[indexes[j]];
                     minKArr = j;
@@ -89,6 +91,9 @@ namespace ex2
 
         for (int i = 0;i < size;i++)
             arr[i] = mergedArr[i];
+
+        delete[] mergedArr;
+        delete[] indexes;
     }
 
 
