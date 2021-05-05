@@ -2,7 +2,7 @@
 
 namespace ex2
 {
-    int Sort::partition(double*& arr, int left, int right) {
+    int Sort::partition(double* arr, int left, int right) {
         if (left == right)
             return left;
         if (left < right) {
@@ -33,23 +33,24 @@ namespace ex2
         *num2 = temp;
     }
 
-    void Sort::swap(double*& arr, int& left, int& right) {
+    void Sort::swap(double* arr, int& left, int& right) {
+        int intTemp;
         double temp = arr[left];
         arr[left] = arr[right];
         arr[right] = temp;
-        temp = left;
+        intTemp = left;
         left = right;
-        right = temp;
+        right = intTemp;
     }
 
-    void Sort::printArr(double*& arr, int size) {
+    void Sort::printArr(double* arr, int size) {
         for (int i = 0;i < size;i++) {
             cout << (arr)[i] << " ";
         }
         cout << endl;
     }
 
-    void Sort::quickSort(double*& arr, int left, int right)
+    void Sort::quickSort(double* arr, int left, int right)
     {
         if (left < right)
         {
@@ -59,7 +60,7 @@ namespace ex2
         }
     }
 
-    void Sort::merge(double*& arr, int size, int k) {
+    void Sort::merge(double* arr, int size, int k) {
         double min;
         int minKArr, kMaxIndex, t;
         double* mergedArr = new double[size];
@@ -97,21 +98,22 @@ namespace ex2
     }
 
 
-	void Sort::kWayMergeSort(double*& arr, int size, int k) {
+	void Sort::kWayMergeSort(double* arr, int size, int k) {
+        char cast;
+
         if (size < k){
-            quickSort(arr, 0, size);
+            quickSort(arr, 0, size - 1);
             return;
         }
         double* temp;
         for (int i = 0; i < k;i++){
-            temp = arr + i * (size / k);
+            temp = arr + (i * (size / k));
             kWayMergeSort(temp, size / k, k);
         }
         if (size % k) {
-            temp = arr + size - size % k;
+            temp = arr + (size - size % k);
             kWayMergeSort(temp, size%k, k);
         }
-            
         
         merge(arr, size, k);
 	}

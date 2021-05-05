@@ -52,9 +52,9 @@ namespace ex2
 		}
 	}
 
-	void Input::getArrCopy(double*& numArr) {
+	/*void Input::getArrCopy(double*& numArr) {
 		_arr.copy(numArr);
-	}
+	}*/
 
 	void Input::getUserInput() {
 		arrSizeInput();

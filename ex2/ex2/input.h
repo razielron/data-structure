@@ -21,7 +21,7 @@ namespace ex2
 		int getSize() { return _arrSize; }
 		int geti() { return _index; }
 		double* getArr() { return _arr.getArr(); }
-		void getArrCopy(double*& arr);
+		//void getArrCopy(double*& arr);
 		void getUserInput();
 	};
 }
