@@ -3,10 +3,14 @@
 namespace ex2
 {
 
-	bool Input::isValidNum(DynamicArr<char>& num) {
-		int decimalLevel = num.size() - (num.find('.') + 2);
-
-		return ((num.size() - 1 > 0) && decimalLevel >= 1 && decimalLevel <= 4);
+	bool Input::isValidNum(string& num) {
+		char c;
+		for (int i = 0;i < num.length();i++) {
+			c = num[i];
+			if (!(c >= '0' && c <= '9') && (c == '-' && i != 0))
+				return false;
+		}
+		return true;
 	}
 
 	void Input::arrSizeInput() {
@@ -29,36 +33,48 @@ namespace ex2
 
 	void Input::getNumbers() {
 		double number;
-		DynamicArr<char> strNumber;
+		string strNumber;
 		char c;
 
-		cin.ignore();
-		for (int i = 0; i < _arrSize; i++) {
-			cin.get(c);
-			while (c != '\n' && c != ' ') {
+		ifstream myfile(_inputFileName, ios::in);
+		while (myfile.get(c)) {
+			if (c != '\n')
 				strNumber.push_back(c);
-				cin.get(c);
-			}
-			strNumber.push_back('\0');
-
-			if (!isValidNum(strNumber)) {
+			else if (!isValidNum(strNumber)) {
 				cout << "Wrong Input" << endl;
 				exit(-1);
 			}
-
-			number = atof(strNumber.getArr()); //char* -> double
+			else {
+				number = stod(strNumber); //string -> double
+				_arr.push_back(number);
+				strNumber.clear();
+			}
+		}
+		if (!strNumber.empty()) {
+			number = stod(strNumber); //string -> double
 			_arr.push_back(number);
-			strNumber.clear();
+		}
+
+		if (_arr.size() != _arrSize) {
+			cout << "Wrong Input" << endl;
+			exit(-1);
 		}
 	}
 
-	/*void Input::getArrCopy(double*& numArr) {
-		_arr.copy(numArr);
-	}*/
+	void Input::getFilesName() {
+		cin>>_inputFileName;
+		if (_inputFileName.find(".txt")==string::npos)
+			_inputFileName += ".txt";
+		cin>>_outputFileName;
+		if (_outputFileName.find(".txt")==string::npos)
+			_outputFileName += ".txt";
+		
+	}
 
 	void Input::getUserInput() {
 		arrSizeInput();
 		getIndex();
+		getFilesName();
 		getNumbers();
 	}
 }

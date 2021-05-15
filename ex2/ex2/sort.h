@@ -15,6 +15,7 @@ namespace ex2
 		static int partition(double* Arr, int left, int right);
 		static void swap(double* num1, double* num2);
 		static void swap(double* Arr, int& left, int& right);
+		static void saveArray(double* arr, int size, string fileName);
 		static void printArr(double* arr, int size);
 		static void quickSort(double* arr, int left, int right);
 		static void kWayMergeSort(double* arr, int size, int k);
