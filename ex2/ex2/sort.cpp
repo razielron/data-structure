@@ -62,32 +62,35 @@ namespace ex2
 
     void Sort::merge(double* arr, int size, int k) {
         double min;
+        Pair temp;
         int minKArr, kMaxIndex, t;
         double* mergedArr = new double[size];
         int indexesSize = (size % k) ? (k + 1) : k;
+        MinHeap heap(indexesSize);
         int* indexes = new int[indexesSize];
+
         for (int i = 0;i < indexesSize;i++)
             indexes[i] = i * (size/k);
-        for (int i = 0; i < size; i++) {
-            kMaxIndex = (size / k)-1;
-            t = 0;
-            while (indexes[t] > kMaxIndex && t!=indexesSize) {
-                t++;
-                kMaxIndex = (t == indexesSize - 1) ? size - 1 : ((size / k) * (t+1)-1);
+
+        for (int j = 0; j < indexesSize; j++) { //first init of the heap
+            kMaxIndex = (j == indexesSize - 1) ? size - 1 : ((size / k) * (j + 1) - 1);
+            if (indexes[j] <= kMaxIndex) {
+                temp.kArr = j;
+                temp.value = arr[indexes[j]];
+                heap.insert(temp);
+                indexes[j]++;
             }
-            t = (t < indexesSize) ? t : t - 1;
-            minKArr = t;
-            min = arr[indexes[t]];
-            for (int j = 0;j < indexesSize;j++) {
-                kMaxIndex = (j == indexesSize - 1) ? size - 1 : ((size / k) * (j+1)-1);
-                if (min > arr[indexes[j]] && indexes[j] <= kMaxIndex)
-                {
-                    min = arr[indexes[j]];
-                    minKArr = j;
-                }
+        }
+
+        for (int i = 0; i < size; i++) { //takes the min value of the temporary heap to the merged array and updates the heap
+            temp = heap.deleteMin();
+            mergedArr[i] = temp.value;
+            kMaxIndex = (temp.kArr == indexesSize - 1) ? size - 1 : ((size / k) * (temp.kArr + 1) - 1);
+            if (indexes[temp.kArr] <= kMaxIndex) {
+                temp.value = arr[indexes[temp.kArr]];
+                heap.insert(temp);
+                indexes[temp.kArr]++;
             }
-            mergedArr[i] = min;
-            indexes[minKArr]++;
         }
 
         for (int i = 0;i < size;i++)

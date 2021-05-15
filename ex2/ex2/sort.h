@@ -1,5 +1,6 @@
 #pragma once
 #include "dynamicArr.h"
+#include "minHeap.h"
 #include <iostream>
 #include <fstream>
 #include <chrono>

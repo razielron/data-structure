@@ -3,19 +3,10 @@
 namespace ex2
 {
 	MinHeap::MinHeap(int max) {
-		_data = new double[max];
+		_data = new Pair[max];
 		_maxSize = max;
 		_heapSize = 0;
 		_allocated = 1;
-	}
-
-	MinHeap::MinHeap(double a[], int n) {
-		_heapSize = _maxSize = n;
-		_data = a;
-		_allocated = 0;
-
-		for (int i = n / 2 - 1;i >= 0;i--)
-			fixHeap(i);
 	}
 
 	MinHeap::~MinHeap() {
@@ -36,9 +27,9 @@ namespace ex2
 		return 2 * node + 2;
 	}
 
-	void MinHeap::swap(double& a, double& b)
+	void MinHeap::swap(Pair& a, Pair& b)
 	{
-		double temp = a;
+		Pair temp = a;
 		a = b;
 		b = temp;
 	}
@@ -48,10 +39,10 @@ namespace ex2
 		int left = Left(node);
 		int right = Right(node);
 
-		if (left < _heapSize && _data[left] < _data[node])
+		if (left < _heapSize && _data[left].value < _data[node].value)
 			min = left;
 		else min = node;
-		if (right < _heapSize && _data[right] < _data[min])
+		if (right < _heapSize && _data[right].value < _data[min].value)
 			min = right;
 
 		if (min != node) {
@@ -60,23 +51,23 @@ namespace ex2
 		}	
 	}
 
-	double MinHeap::deleteMin() {
+	Pair MinHeap::deleteMin() {
 		if (_heapSize < 1)
 			exit(EXIT_FAILURE);
-		double min = _data[0];
+		Pair min = _data[0];
 		_heapSize--;
 		_data[0] = _data[_heapSize];
 		fixHeap(0);
 		return min;
 	}
 
-	void MinHeap::insert(double item) {
+	void MinHeap::insert(Pair item) {
 		if(_heapSize==_maxSize)
 			exit(EXIT_FAILURE);
 		int i = _heapSize;
 		_heapSize++;
 
-		while (i > 0 && _data[Parent(i)] > item) {
+		while (i > 0 && _data[Parent(i)].value > item.value) {
 			_data[i] = _data[Parent(i)];
 			i = Parent(i);
 		}

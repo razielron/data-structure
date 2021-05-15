@@ -5,9 +5,15 @@ using namespace std;
 
 namespace ex2
 {
+	typedef struct
+	{
+		double value;
+		int kArr;
+	}Pair;
+
 	class MinHeap {
 	private:
-		double* _data;
+		Pair* _data;
 		int _maxSize;
 		int _heapSize;
 		int _allocated;
@@ -18,11 +24,10 @@ namespace ex2
 	
 	public:
 		MinHeap(int max);
-		MinHeap(double a[], int n);
 		~MinHeap();
-		double min();
-		double deleteMin();
-		void insert(double item);
-		void swap(double& a, double& b);
+		Pair min() { return _data[0]; }
+		Pair deleteMin();
+		void insert(Pair item);
+		void swap(Pair& a, Pair& b);
 	};
 }
