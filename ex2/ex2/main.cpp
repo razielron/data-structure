@@ -7,5 +7,6 @@ int main() {
 	input.getUserInput();
 	double* arr = input.getArr();
 	Sort::kWayMergeSort(arr, input.getSize(), input.geti());
+	Sort::saveArray(arr, input.getSize(), input.getOutputFileName());
 	Sort::printArr(arr, input.getSize());
 }

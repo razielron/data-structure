@@ -43,6 +43,14 @@ namespace ex2
         right = intTemp;
     }
 
+    void Sort::saveArray(double* arr, int size, string fileName) {
+        ofstream myfile(fileName, ios::app);
+        for (int i = 0;i < size;i++) {
+            myfile << (arr)[i] << endl;
+        }
+        myfile.close();
+    }
+
     void Sort::printArr(double* arr, int size) {
         for (int i = 0;i < size;i++) {
             cout << (arr)[i] << " ";
